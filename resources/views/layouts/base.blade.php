@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>{{ $page->title }}</title>
+        <title>{{ config('app.name') }}</title>
 
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="/css/app.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     </head>
     <body class="bg-light">
         <header class="p-3 mb-5 bg-dark text-white">
-            <span>{{ $page->title }}</span>
+            <span>{{ config('app.name') }}</span>
         </header>
         <main class="container p-3">
             @yield('content')
