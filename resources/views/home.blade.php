@@ -12,9 +12,9 @@
         @endforeach
     @endif
 
-    @isset ($page->success)
+    @if(session()->has('success'))
         <div class="alert alert-success">
-            {{ $page->success }}
+            {{ session('success') }}
         </div>
     @endisset
 
@@ -31,8 +31,16 @@
     </form>
 </div>
 <hr>
-<div>
-    <h2 class="h6 text-muted">Recently Answered</h2>
-    @php(dump($page))
-</div>
+@if(count($page->questions) > 0)
+<section>
+    <h2 class="h6 text-muted">Recently Asked</h2>
+    <ul class=list-group>
+        @foreach($page->questions as $question)
+        <li class="d-flex justify-content-between align-items-center list-group-item">
+            <a href="{{ route('questions.show', $question->id) }}">{{ $question->title }}</a> <span class="badge badge-pill badge-secondary">{{ $question->updated_at->diffForHumans() }}</span>
+        </li>
+        @endforeach
+    </ul>
+</section>
+@endif
 @endsection

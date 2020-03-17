@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@index')->name('index');;
+Route::resource('answers', 'AnswersController');
 Route::resource('questions', 'QuestionsController');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Question;
+use App\Answer;
 
 class QuestionsController extends PagesController
 {
@@ -33,8 +34,12 @@ class QuestionsController extends PagesController
         ]);
         $question->save();
 
-        $data->success = 'Question Posted!';
+        return redirect()->back()->with('success', 'Question Posted!');
+    }
 
-        return redirect('/')->with('page', $data);
+    public function show($id) {
+        $data = Question::find($id);
+        $data->answers = $data->answers->sortByDesc('updated_at');
+        return view('question.show')->with('page', $data);
     }
 }
