@@ -15,7 +15,8 @@ class PagesController extends Controller
     public function index() {
         $data = $this->data;
 
-        $data->questions = Question::all();
+        $questions = Question::all();
+        $data->questions = $questions->sortByDesc('updated_at');
 
         $placeholders = ['Why did you go vegan?', 'What\'s your favorite thing to eat?', 'Is it expensive to eat a vegan diet?', 'Can you be an athlete on a vegan diet?'];
         $this->data->placeholder = Arr::random($placeholders);
